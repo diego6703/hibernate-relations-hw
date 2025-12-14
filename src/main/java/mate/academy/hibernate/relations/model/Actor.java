@@ -1,11 +1,10 @@
 package mate.academy.hibernate.relations.model;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Actor implements Cloneable {
@@ -38,7 +37,7 @@ public class Actor implements Cloneable {
         this.name = name;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     public Country getCountry() {
         return country;
     }
