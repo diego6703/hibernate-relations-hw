@@ -1,8 +1,14 @@
 package mate.academy.hibernate.relations.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Movie implements Cloneable {
     private Long id;
     private String title;
@@ -15,6 +21,8 @@ public class Movie implements Cloneable {
         this.title = title;
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
@@ -31,6 +39,7 @@ public class Movie implements Cloneable {
         this.title = title;
     }
 
+    @OneToMany
     public List<Actor> getActors() {
         return actors;
     }
