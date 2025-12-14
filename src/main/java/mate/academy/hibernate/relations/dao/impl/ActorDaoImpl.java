@@ -31,17 +31,11 @@ public class ActorDaoImpl extends AbstractDao implements ActorDao {
 
     @Override
     public Optional<Actor> get(Long id) {
-        Session session = null;
         Optional<Actor> actor = null;
-        try {
-            session = this.factory.openSession();
+        try (Session session = this.factory.openSession()) {
             actor = Optional.ofNullable(session.get(Actor.class, id));
         } catch (Exception ex) {
-            throw new DataProcessingException("Could not save movie: " + actor, ex);
-        } finally {
-            if (session != null) {
-                session.close();
-            }
+            throw new DataProcessingException("Could not get movie: " + actor, ex);
         }
         return actor;
     }
